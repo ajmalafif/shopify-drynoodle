@@ -1,0 +1,14 @@
+
+<svg width="19px" height="17px" viewBox="0 0 19 17" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <defs>
+        <path d="M9.49920698,2.6879016 L8.5270198,1.71571442 C6.56713795,-0.244167428 3.37732277,-0.250759118 1.41397019,1.71259347 C-0.545387369,3.67195102 -0.547985097,6.86056684 1.41709114,8.82564308 L9.35309203,16.761644 L9.50079302,16.613943 L9.64690797,16.7600579 L17.5829089,8.82405703 C19.5479851,6.85898079 19.5453874,3.67036498 17.5860298,1.71100742 C15.6226772,-0.252345162 12.4328621,-0.245753472 10.4729802,1.71412838 L9.49920698,2.6879016 Z" id="path-1"></path>
+        <mask id="mask-2" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="0" y="0" width="19" height="17" fill="white">
+            <use xlink:href="#path-1"></use>
+        </mask>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Artboard-Copy" stroke="#FFB8B9" stroke-width="1.80000003">
+            <use id="Combined-Shape" mask="url(#mask-2)" xlink:href="#path-1"></use>
+        </g>
+    </g>
+</svg>

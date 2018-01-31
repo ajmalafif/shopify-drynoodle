@@ -1,0 +1,25 @@
+<div class="grid grid--no-gutters">
+{% for article in blogs.interview.articles %}
+
+  {% if forloop.first == true %}
+    <div class="interview">
+        <img class="interview-latest" src="{{ article.image.src | img_url: '1024x1024' }}" alt="{{ article.title }}"/>
+      <a href="{{ article.url }}">
+        <h2 class="interview-latest__headline">{{ article.title }}</h2>
+        <h4 class="interview-latest__tagline">{{ article.excerpt }}</h4>
+      </a>
+    </div>
+
+  {% else %}
+
+    <div class="grid__item one-half interview-small">
+      <img class="interview-others" src="{{ article.image.src | img_url: '1024x1024' }}" alt="{{ article.title }}"/>
+      <a href="{{ article.url }}">
+        <h2 class="interview-others__headline">{{ article.title }}</h2>
+        <h4 class="interview-others__tagline">{{ article.excerpt }}</h4>
+      </a>
+    </div>
+  {% endif %}
+
+{% endfor %}
+</div>

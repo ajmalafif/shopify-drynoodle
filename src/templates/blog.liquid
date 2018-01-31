@@ -1,0 +1,126 @@
+{% if handle contains 'interview' %}
+
+{% include '_interview' %}
+
+{% elsif handle contains 'ootd' %}
+
+{% include '_ootd' %}
+
+{% else %}
+
+
+{% assign blog_handles = "interview;ootd;trending;home;news" %}
+{% assign blog_list = blog_handles | split: ';'%}
+{% assign article_list = '' %}
+
+
+<div class="page-width page-blogs">
+
+  <h1 class="blogs-title">
+    {% if current_tags %}
+      {{ current_tags.first }}
+    {% else %}
+      {{ blog.title }}
+    {% endif %}
+    <!-- <a href="{{ shop.url }}{{ blog.url }}.atom" class="blog__rss-link link-accent-color">
+      {% include 'icon-rss' %}
+      <span class="icon__fallback-text">RSS</span>
+    </a> -->
+  </h1>
+
+
+
+  <div class="grid">
+    <div class="grid__item{% if blog.all_tags.size > 0 %} medium-up--three-quarters large-up--four-fifths{% endif %}">
+
+      {% for blog_handle in blog_list %}
+      {% paginate blogs[blog_handle]articles by 5 %}
+
+        {% for article in blogs[blog_handle].articles %}
+          <!-- <div class="content-block"> -->
+
+          <div class="grid article-single">
+            <div class="grid__item medium-up--one-third">
+              {% if article.image.size > 0 %}
+                <a href="{{ article.url }}">
+                  <div class="ootd-cover">
+                    <img src="{{ article.image.src | img_url: 'large' }}">
+                  </div>
+                </a>
+              {% else %}
+                {% if article.content contains "<img" %}
+                  {% assign image-size = 'large' %}
+                  <a href="{{ article.url }}">
+                    <img src="{% include 'src-from-text' with article.content %}">
+                  </a>
+                {% endif %}
+              {% endif %}
+            </div><!-- image grid -->
+
+            <div class="grid__item medium-up--one-third">
+              <h2 class="blog__title-link"><a href="{{ article.url }}">{{ article.title }}</a></h2>
+
+              <p class="blog__meta">
+                {% if article.tags.size > 0 %}
+                  {% for tag in article[blog_handle].tags %}
+                    <a href="{{ blog.url }}/tagged/{{ tag | handle }}" class="link-body-color"><strong>{{ tag }}</strong></a>{% if forloop.last %} - {% else %}, {% endif %}
+                  {% endfor %}
+                {% endif %}
+                {{ article.published_at | time_tag: format: 'month_day_year' }}
+              </p>
+
+              <div class="rte rte--indented-images">
+                {% if article.excerpt.size > 0 %}
+                  {{ article.excerpt }}
+                {% else %}
+                  <p class="article-excerpt">{{ article.content | strip_html | truncatewords: 100 }}</p>
+                {% endif %}
+              </div>
+
+              <p><a href="{{ article.url }}"><strong class="btn-chic">{{ 'blogs.article.read_more' | t }}</strong></a></p>
+
+            </div><!-- article grid -->
+          </div><!-- .grid -->
+
+          <!-- </div> -->
+          {% endfor %}
+        {% endpaginate %}
+      {% endfor %}
+
+      </div>
+    </div>
+
+    {% if paginate.pages > 1 %}
+      <div class="pagination">
+        {{ paginate | default_pagination | replace: '&laquo; Previous', '&larr;' | replace: 'Next &raquo;', '&rarr;' }}
+      </div>
+    {% endif %}
+
+
+    {% comment %}
+    {% if blogs[blog_handle].all_tags.size > 0 %}
+      <div class="grid__item medium-up--one-quarter large-up--one-fifth small--hide">
+        <div class="content-block content-block--small">
+          <h6 class="content-block__title">{{ 'blogs.article.tags' | t }}</h6>
+          <ul class="list--no-bullets list--bold">
+            <li>
+              <a href="{{ blog.url }}">{{ 'blogs.article.all_tags' | t }}</a>
+            </li>
+            {% for tag in blogs[blog_handle].all_tags %}
+              {% if current_tags contains tag %}
+              <li>{{ tag }}</li>
+              {% else %}
+              <li>{{ tag | link_to_tag: tag }}</li>
+              {% endif %}
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
+    {% endif %}
+    {% endcomment %}
+
+    {% section 'featured-products-subsection' %}
+
+  </div><!-- .page-width -->
+
+{% endif %}

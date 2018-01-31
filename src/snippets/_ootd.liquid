@@ -1,0 +1,28 @@
+<h1 class="text-center ootd-h1">#OOTD</h1>
+<p class="text-center">#OOTD highlights everyday wear & tear for people like you and me</p>
+<div class="grid p-top-2">
+{% for article in blogs.ootd.articles %}
+
+  <div class="grid__item one-third ootd-tile">
+    {% if article.image.size > 0 %}
+      <a href="{{ article.url }}">
+        <div class="ootd-cover">
+          <img src="{{ article.image.src | img_url: 'large' }}">
+        </div>
+        <h6>{{ article.title }}</h6>
+        <p>{{ article.excerpt }}</p>
+      </a>
+    {% else %}
+      {% if article.content contains "<img" %}
+      {% assign image-size = 'large' %}
+      <a href="{{ article.url }}">
+        <img src="{% include 'src-from-text' with article.content %}">
+        <h1>{{ article.title }}</h6>
+        <p>{{ article.excerpt }}</p>
+      </a>
+    {% endif %}
+    {% endif %}
+  </div>
+
+{% endfor %}
+</div>

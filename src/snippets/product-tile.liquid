@@ -1,0 +1,28 @@
+<div class="product-tile-container wishlist-tile-container" data-product-id="{{ product.id }}" data-product-handle="{{ product.handle }}">
+
+      <a class="product-card" href="{{ product.url }}">
+
+        <div class="product-card__image-wrapper">
+          <img class="product-card__image" src="{{ product.featured_image | product_img_url: 'large' }}" alt="{{ product.title }}">
+        </div>
+
+        <div class="product-card__info">
+          <div class="product-card__name">{{ product.title }}</div>
+          <div class="product-card__price">
+          {% if product.compare_at_price > product.price %}
+            <p class="text--price">
+              <s class="product-card__regular-price">{{ product.compare_at_price | money }}</s>
+              <span class="product-card__regular-price">{{ product.price | money }}</span>
+            </p>
+          {% else %}
+            <p class="product-card__regular-price">{{ product.price | money }}</p>
+          {% endif %}
+        </div>
+
+          <!-- {% include 'wishlist-button'%} -->
+      </div>
+    </a>
+
+    <a class="btn btn--full product-form__cart-submit" href="{{ product.url }}">View</a>
+
+</div>
