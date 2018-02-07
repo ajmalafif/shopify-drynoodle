@@ -167,7 +167,8 @@
     <div class="page-width">
       <div class="grid medium-up--grid--table">
         <div class="grid__item medium-up--one-half">
-          <small>&copy; {{ 'now' | date: "%Y" }}, {{ shop.name | link_to: '/' }}. {{ "Powered by Shopify" | link_to: 'https://www.shopify.com/?ref=ajmalafif' }}</small>
+          <small>&copy; {{ 'now' | date: "%Y" }}, {{ "A-sha Dry Noodle Singapore" | link_to: '/' }}.</small>
+          <small class="text-right">{{ "Powered by Shopify" | link_to: 'https://www.shopify.com/?ref=ajmalafif' }}</small>
         </div>
         <div class="grid__item medium-up--one-half medium-up--text-right">
           {% unless shop.enabled_payment_types == empty %}

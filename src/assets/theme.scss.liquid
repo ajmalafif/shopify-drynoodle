@@ -318,7 +318,8 @@ $color-success-bg: #59ac6c;
 
 /*================ Sizing Variables ================*/
 $width-site: 1180px;
-$gutter-site: 20px;
+{% comment %} $gutter-site: 20px; {% endcomment %}
+$gutter-site: 15px;
 $gutter-heading: 20px;
 
 /*================ Product Grid ================*/
@@ -5897,4 +5898,14 @@ p.text--price {
 }
 
 .product-card__overlay {
+}
+
+#shopify-section-1517988780597 {
+  .section-block--padding {
+    padding: 0;
+  }
+}
+
+.text-right {
+  text-align: right;
 }
