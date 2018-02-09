@@ -27,7 +27,9 @@
     {% if settings.product_vendor_enable %}
       <div class="product-card__brand">{{ product.vendor }}</div>
     {% endif %}
-
+    {% if product.tags contains 'coming-soon' %}
+      <div class="product-card__name product--coming-soon">Coming soon!</div>
+    {% endif %}
     <div class="product-card__name">{{ product.title }}</div>
 
     {% if product.available %}

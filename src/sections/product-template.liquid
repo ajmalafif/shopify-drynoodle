@@ -80,6 +80,7 @@
               {% endunless %}
               <span id="ProductPrice-{{ section.id }}" class="product-single__price" itemprop="price" content="{{ current_variant.price | divided_by: 100.00 }}">
                 {{ current_variant.price | money }}
+                
               </span>
             </li>
             {% if product.compare_at_price_max > product.price %}
@@ -150,6 +151,11 @@
             <input type="number" id="Quantity" name="quantity" value="1" min="1" class="product-form__input product-form__quantity">
           </div>
           <div class="product-form__item product-form__item--submit">
+            {% if product.tags contains 'coming-soon' %}
+            <button class="btn btn--full product-form__cart-submit btn--sold-out btn--coming-soon" disabled="disabled">
+              {{ 'products.product.sold_out' | t }}
+            </button>
+            {% else %}
             <button type="submit"
               name="add"
               id="AddToCart-{{ section.id }}"
@@ -163,10 +169,11 @@
                 {% endunless %}
               </span>
             </button>
+            {% endif %}
           </div>
         </form>
 
-        {% include 'wishlist-button'%}
+        {% comment %} {% include 'wishlist-button'%} {% endcomment %}
 
         <hr>
 
