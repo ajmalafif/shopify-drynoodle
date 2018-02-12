@@ -57,8 +57,8 @@ function quickView(){
         if(v.inventory_quantity == 0){
           return true
         } else {
-            price = parseInt(v.price/100).toFixed(2);
-            original_price = parseInt(v.compare_at_price/100).toFixed(2);
+            price = parseFloat(v.price/100).toFixed(2);
+            original_price = parseFloat(v.compare_at_price/100).toFixed(2);
             $('.qv-product-price').text('$' + price);
             if(original_price > 0){
               $('.qv-product-original-price').text('$' + original_price).show();
@@ -84,10 +84,11 @@ function quickView(){
       jQuery.getJSON('/products/' + product_handle + '.js', function(product) {
         $(product.variants).each(function(i, v) {
           if(v.title == selectedOptions){
-            var price = parseInt(v.price/100).toFixed(2);
-            var original_price = parseInt(v.compare_at_price/100).toFixed(2);
+            var price = parseFloat(v.price/100).toFixed(2);
+            var original_price = parseFloat(v.compare_at_price/100).toFixed(2);
             var v_qty = v.inventory_quantity;
             var v_inv = v.inventory_management;
+            console.log
             $('.qv-product-price').text('$' + price);
             $('.qv-product-original-price').text('$' + original_price);
             if(v_inv == null){
