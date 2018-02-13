@@ -16,6 +16,7 @@ function quickView(){
       var images = product.images;
       var variants = product.variants;
       var options = product.options;
+      var tags = product.tags;
       var url = '/collections/' + collection_handle + '/products/' + product_handle;
       $('.qv-product-title').text(title);
       $('.qv-product-type').text(type);
@@ -52,6 +53,16 @@ function quickView(){
           }));
         });
         $('.option-selection.title').hide();
+      });
+      $(product.tags).each(function(i, v){
+        console.log(v);
+        if(v != "coming-soon"){
+            $('.qv-add-button').toggleClass('hidden');
+        } else {
+          $('.qv-add-button').hide();
+          $('.btn--coming-soon').toggleClass('hidden');
+          return true
+        }
       });
       $(product.variants).each(function(i, v){
         if(v.inventory_quantity == 0){
