@@ -48,7 +48,6 @@
             <br>
             <span class="visually-hidden">{{ 'products.product.sale_price' | t }}</span>
             {{ product.price | money_without_trailing_zeros }}
-
           {% endif %}
 
         {% else %}
@@ -60,7 +59,10 @@
             {{ 'products.product.from_text_html' | t: price: price }}
           {% else %}
             <span class="visually-hidden">{{ 'products.product.regular_price' | t }}</span>
+            {% if product.tags contains 'coming-soon' %}
+            {% else %}
             {{ product.price | money_without_trailing_zeros }}
+            {% endif %}
           {% endif %}
 
         {% endif %}
